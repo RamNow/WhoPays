@@ -1,0 +1,41 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingRight="0dp"
+    android:paddingBottom="0dp"
+    android:paddingStart="10dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ButtonAddText"
+            android:id="@+id/btnAdd"
+            android:src="@drawable/add32"
+            android:contentDescription="@string/ButtonAddHint" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ButtonDeleteText"
+            android:id="@+id/btnDelete"
+            android:src="@drawable/delete32"
+            android:contentDescription="@string/ButtonDeleteHint" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/listViewPersons"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:headerDividersEnabled="false" />
+</LinearLayout>
