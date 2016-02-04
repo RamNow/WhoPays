@@ -29,7 +29,7 @@ public class Abrechnung_list_item extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_abrechnung_list_item, container, false);
+        return inflater.inflate(R.layout.abrechnung_list_item, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

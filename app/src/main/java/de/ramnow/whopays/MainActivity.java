@@ -1,29 +1,87 @@
 package de.ramnow.whopays;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    private RecyclerView abrechnungen;
+    private LinearLayoutManager mLayoutManager;
+    private MyAdapter myAdapter;
+
+    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+        private ArrayList<String> mDataset;
+
+        public void addData(String data) {
+            mDataset.add(data);
+            notifyItemInserted(mDataset.size() - 1);
+        }
+
+        // Provide a reference to the views for each data item
+        // Complex data items may need more than one view per item, and
+        // you provide access to all the views for a data item in a view holder
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            // each data item is just a string in this case
+            public TextView mTextView;
+
+            public ViewHolder(TextView v) {
+                super(v);
+                mTextView = v;
+            }
+        }
+
+        // Provide a suitable constructor (depends on the kind of dataset)
+        public MyAdapter(ArrayList<String> myDataset) {
+            mDataset = myDataset;
+        }
+
+        // Create new views (invoked by the layout manager)
+        @Override
+        public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.abrechnung_list_item, parent, false);
+            TextView tv = (TextView) v.findViewById(R.id.abrechnung_item_text);
+
+            ViewHolder vh = new ViewHolder(tv);
+            return vh;
+        }
+
+        // Replace the contents of a view (invoked by the layout manager)
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            // - get element from your dataset at this position
+            // - replace the contents of the view with that element
+            holder.mTextView.setText(mDataset.get(position));
+
+        }
+
+        // Return the size of your dataset (invoked by the layout manager)
+        @Override
+        public int getItemCount() {
+            return mDataset.size();
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mainold);
+        setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -31,57 +89,29 @@ public class MainActivity extends AppCompatActivity {
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        abrechnungen = (RecyclerView) findViewById(R.id.abrechnungen_list);
+        abrechnungen.setHasFixedSize(true);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        mLayoutManager = new LinearLayoutManager(this);
+        abrechnungen.setLayoutManager(mLayoutManager);
 
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        ArrayList<String> dummyData = new ArrayList<>();
+        dummyData.add("OpenFlair 2014");
+        dummyData.add("WG Abrechnung Oktober '14");
+        myAdapter = new MyAdapter(dummyData) {
+
+        };
+        abrechnungen.setAdapter(myAdapter);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Add Code for \"Neue Abrechnung\"", Snackbar.LENGTH_SHORT)
+//                        .setAction("Action", null).show();
+                myAdapter.addData("Item");
             }
-        });*/
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "ONE");
-        adapter.addFragment(new TwoFragment(), "TWO");
-        adapter.addFragment(new ThreeFragment(), "THREE");
-        viewPager.setAdapter(adapter);
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
+        });
     }
 
     @Override
