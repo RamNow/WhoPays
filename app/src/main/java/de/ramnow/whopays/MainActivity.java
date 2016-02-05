@@ -1,5 +1,6 @@
 package de.ramnow.whopays;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -11,20 +12,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private RecyclerView abrechnungen;
+    private Toolbar mToolbar;
+    private RecyclerView mAbrechnungenView;
     private LinearLayoutManager mLayoutManager;
-    private MyAdapter myAdapter;
+    private AbrechnungenAdapter mAbrechnungenAdapter;
 
-    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+    public class AbrechnungenAdapter extends RecyclerView.Adapter<AbrechnungenAdapter.ViewHolder> {
         private ArrayList<String> mDataset;
 
         public void addData(String data) {
@@ -35,24 +34,32 @@ public class MainActivity extends AppCompatActivity {
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
-        public class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             // each data item is just a string in this case
             public TextView mTextView;
 
             public ViewHolder(TextView v) {
                 super(v);
                 mTextView = v;
+                v.setOnClickListener(this);
+            }
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), AbrechnungActivity.class)
+                        .putExtra(Intent.EXTRA_TEXT, mTextView.getText());
+                startActivity(intent);
             }
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public MyAdapter(ArrayList<String> myDataset) {
+        public AbrechnungenAdapter(ArrayList<String> myDataset) {
             mDataset = myDataset;
         }
 
         // Create new views (invoked by the layout manager)
         @Override
-        public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public AbrechnungenAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.abrechnung_list_item, parent, false);
             TextView tv = (TextView) v.findViewById(R.id.abrechnung_item_text);
@@ -83,25 +90,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
-        abrechnungen = (RecyclerView) findViewById(R.id.abrechnungen_list);
-        abrechnungen.setHasFixedSize(true);
+        mAbrechnungenView = (RecyclerView) findViewById(R.id.abrechnungen_list);
+        mAbrechnungenView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
-        abrechnungen.setLayoutManager(mLayoutManager);
+        mAbrechnungenView.setLayoutManager(mLayoutManager);
 
         ArrayList<String> dummyData = new ArrayList<>();
         dummyData.add("OpenFlair 2014");
         dummyData.add("WG Abrechnung Oktober '14");
-        myAdapter = new MyAdapter(dummyData) {
+        mAbrechnungenAdapter = new AbrechnungenAdapter(dummyData) {
 
         };
-        abrechnungen.setAdapter(myAdapter);
+        mAbrechnungenView.setAdapter(mAbrechnungenAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Snackbar.make(view, "Add Code for \"Neue Abrechnung\"", Snackbar.LENGTH_SHORT)
 //                        .setAction("Action", null).show();
-                myAdapter.addData("Item");
+                mAbrechnungenAdapter.addData("Item");
             }
         });
     }
