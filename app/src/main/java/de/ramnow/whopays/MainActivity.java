@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         mAbrechnungenView = (RecyclerView) findViewById(R.id.abrechnungen_list);
         mAbrechnungenView.setHasFixedSize(true);
@@ -103,9 +102,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> dummyData = new ArrayList<>();
         dummyData.add("OpenFlair 2014");
         dummyData.add("WG Abrechnung Oktober '14");
-        mAbrechnungenAdapter = new AbrechnungenAdapter(dummyData) {
-
-        };
+        mAbrechnungenAdapter = new AbrechnungenAdapter(dummyData);
         mAbrechnungenView.setAdapter(mAbrechnungenAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

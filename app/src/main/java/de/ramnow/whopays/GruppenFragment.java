@@ -6,9 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ThreeFragment extends Fragment {
+public class GruppenFragment extends Fragment {
 
-    public ThreeFragment() {
+    public GruppenFragment() {
         // Required empty public constructor
     }
 
@@ -21,6 +21,6 @@ public class ThreeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_three, container, false);
+        return inflater.inflate(R.layout.fragment_gruppen, container, false);
     }
 }
