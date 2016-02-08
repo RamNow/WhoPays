@@ -2,5 +2,14 @@
     <string name="app_name">WhoPays</string>
     <string name="action_settings">Settings</string>
 
-    <string name="title_activity_abrechnung">AbrechnungActivity</string>
+    <string name="title_activity_abrechnung">Abrechnung</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="pref_currency_label_euro">€</string>
+    <string name="pref_currency_label_dollar">$</string>
+    <string name="pref_currency_euro">Euro</string>
+    <string name="pref_currency_dollar">Dollar</string>
+    <string name="pref_currency_label">Währung</string>
+    <string name="pref_currency_key" translatable="false">currency</string>
+    <string name="pref_currency_default">@string/pref_currency_euro</string>
+
 </resources>
