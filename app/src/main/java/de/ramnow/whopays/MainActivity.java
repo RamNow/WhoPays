@@ -1,6 +1,9 @@
 package de.ramnow.whopays;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -11,12 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.util.ArrayList;
+import java.util.Date;
+
+import de.ramnow.whopays.data.WhoPaysContract;
+import de.ramnow.whopays.data.WhoPaysDbHelper;
 
 public class MainActivity extends AppCompatActivity {
 
     private PayoffsAdapter mPayoffsAdapter;
-
+    private SQLiteDatabase mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +36,51 @@ public class MainActivity extends AppCompatActivity {
         payoffsRecyclerView.setHasFixedSize(true);
         payoffsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ArrayList<String> dummyData = new ArrayList<>();
-        dummyData.add("OpenFlair 2014");
-        dummyData.add("WG Abrechnung Oktober '14");
-        mPayoffsAdapter = new PayoffsAdapter(this, dummyData);
+        WhoPaysDbHelper dbHelper = new WhoPaysDbHelper(this);
+        mDb = dbHelper.getWritableDatabase();
+
+        Cursor cursor = getAllPayoffs();
+        mPayoffsAdapter = new PayoffsAdapter(this, cursor);
         payoffsRecyclerView.setAdapter(mPayoffsAdapter);
+
+        // Sample Data
+        /*addNewPayoff("OpenFlair 2014");
+        addNewPayoff("WG Abrechnung Oktober '14");*/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Add Code for \"Neue Abrechnung\"", Snackbar.LENGTH_SHORT)
-//                        .setAction("Action", null).show();
-                mPayoffsAdapter.addData("Item");
+
+                addNewPayoff("Item" + new Date().toString());
+                mPayoffsAdapter.swapCursor(getAllPayoffs());
             }
         });
+    }
+
+    /**
+     * Query the mDb and get all payoffs from the abrechnung table
+     *
+     * @return Cursor containing the list of payoffs
+     */
+    private Cursor getAllPayoffs() {
+        return mDb.query(
+                WhoPaysContract.AbrechnungEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                WhoPaysContract.AbrechnungEntry.COLUMN_NAME
+        );
+    }
+
+    private long addNewPayoff(String name){
+
+        ContentValues cv = new ContentValues();
+        cv.put(WhoPaysContract.AbrechnungEntry.COLUMN_NAME, name);
+
+        return mDb.insert(WhoPaysContract.AbrechnungEntry.TABLE_NAME, null, cv);
     }
 
     @Override
