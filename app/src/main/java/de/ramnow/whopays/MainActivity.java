@@ -19,11 +19,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
-    private RecyclerView mAbrechnungenView;
+    private RecyclerView mPayoffsView;
     private LinearLayoutManager mLayoutManager;
-    private AbrechnungenAdapter mAbrechnungenAdapter;
+    private PayoffsAdapter mPayoffsAdapter;
 
-    public class AbrechnungenAdapter extends RecyclerView.Adapter<AbrechnungenAdapter.ViewHolder> {
+    public class PayoffsAdapter extends RecyclerView.Adapter<PayoffsAdapter.ViewHolder> {
         private ArrayList<String> mDataset;
 
         public void addData(String data) {
@@ -46,23 +46,23 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AbrechnungActivity.class)
+                Intent intent = new Intent(view.getContext(), PayoffsActivity.class)
                         .putExtra(Intent.EXTRA_TEXT, mTextView.getText());
                 startActivity(intent);
             }
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public AbrechnungenAdapter(ArrayList<String> myDataset) {
+        public PayoffsAdapter(ArrayList<String> myDataset) {
             mDataset = myDataset;
         }
 
         // Create new views (invoked by the layout manager)
         @Override
-        public AbrechnungenAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public PayoffsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.abrechnung_list_item, parent, false);
-            TextView tv = (TextView) v.findViewById(R.id.abrechnung_item_text);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.payoff_list_item, parent, false);
+            TextView tv = (TextView) v.findViewById(R.id.payoff_item_text);
 
             ViewHolder vh = new ViewHolder(tv);
             return vh;
@@ -93,17 +93,17 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
-        mAbrechnungenView = (RecyclerView) findViewById(R.id.abrechnungen_list);
-        mAbrechnungenView.setHasFixedSize(true);
+        mPayoffsView = (RecyclerView) findViewById(R.id.payoffs_list);
+        mPayoffsView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
-        mAbrechnungenView.setLayoutManager(mLayoutManager);
+        mPayoffsView.setLayoutManager(mLayoutManager);
 
         ArrayList<String> dummyData = new ArrayList<>();
         dummyData.add("OpenFlair 2014");
         dummyData.add("WG Abrechnung Oktober '14");
-        mAbrechnungenAdapter = new AbrechnungenAdapter(dummyData);
-        mAbrechnungenView.setAdapter(mAbrechnungenAdapter);
+        mPayoffsAdapter = new PayoffsAdapter(dummyData);
+        mPayoffsView.setAdapter(mPayoffsAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Snackbar.make(view, "Add Code for \"Neue Abrechnung\"", Snackbar.LENGTH_SHORT)
 //                        .setAction("Action", null).show();
-                mAbrechnungenAdapter.addData("Item");
+                mPayoffsAdapter.addData("Item");
             }
         });
     }

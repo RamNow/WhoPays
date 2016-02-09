@@ -29,8 +29,8 @@
         </activity>
 
         <activity
-            android:name=".AbrechnungActivity"
-            android:label="@string/title_activity_abrechnung"
+            android:name=".PayoffsActivity"
+            android:label="@string/title_activity_payoffs"
             android:theme="@style/MyMaterialTheme"></activity>
     </application>
 

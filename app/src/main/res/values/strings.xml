@@ -2,8 +2,9 @@
     <string name="app_name">WhoPays</string>
     <string name="action_settings">Settings</string>
 
-    <string name="title_activity_abrechnung">Abrechnung</string>
+    <string name="title_activity_payoffs">Abrechnungen</string>
     <string name="title_activity_settings">Einstellungen</string>
+
     <string name="pref_currency_label_euro">€</string>
     <string name="pref_currency_label_dollar">$</string>
     <string name="pref_currency_euro">Euro</string>
@@ -11,5 +12,9 @@
     <string name="pref_currency_label">Währung</string>
     <string name="pref_currency_key" translatable="false">currency</string>
     <string name="pref_currency_default">@string/pref_currency_euro</string>
+
+    <string name="tab_title_persons">Personen</string>
+    <string name="tab_title_expenses">Auslagen</string>
+    <string name="tab_title_groups">Gruppen</string>
 
 </resources>
