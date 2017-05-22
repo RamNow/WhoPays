@@ -2,18 +2,92 @@
 <items version="2" >
 
     <item
+        is-multidex="true"
+        jar="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_1fa49502965cbca1fa0152780ee74aaca3c5bd1a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Chris\.android\build-cache\60d2e914eac7ed825d57a9bb61d30aabdd9ad198\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6f39763a0c1e0246b4ce4c0b4c078f7f58841bc9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Chris\.android\build-cache\3cc2d7ce386614ab8106459b654ad34f0873a5c0\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7ec3c2e9c03c5db02ee3828ff2d5883fe111ebe3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Chris\.android\build-cache\0acf883e0c014e8c7f17af1efaaba5a93133e267\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6babef52628c75118bf95cb520db217a2a4448ae\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Chris\.android\build-cache\0fb9eb1b06d38a4d471e4e62fe09761181b4dde4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4959ebcf477bfb4dc330cd3d32ac740dc0980a05\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Chris\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.1.1_87de19159c3d36dc033342f4351a235a151fa508\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Chris\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-core-1.3_f65ae64b863648799c194f0819915245de08728d.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Chris\.android\build-cache\0acf883e0c014e8c7f17af1efaaba5a93133e267\output\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.1.1_b1489f2d9bae89148b859656596da0a1298cb1e3\classes.dex" />
+    </item>
+    <item
         jar="C:\Users\Chris\.gradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar"
         jumboMode="false"
+        optimize="true"
         revision="23.0.2"
         sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
         <dex dex="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\pre-dexed\androidTest\debug\junit-4.12_c88d273e91f29156e4c84594bcee7a027c2495f3.jar" />
     </item>
     <item
-        jar="C:\Users\Chris\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
-        <dex dex="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-core-1.3_f65ae64b863648799c194f0819915245de08728d.jar" />
+        is-multidex="true"
+        jar="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d42d9ebffdf4d9fa15ca7f7cc6f6cec64eb8da29">
+        <dex dex="C:\Users\Chris\Documents\Sourcecode\WhoPays\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_d5a77a87ca2a0b134bed44b210a6cca68808ad18\classes.dex" />
     </item>
 
 </items>
