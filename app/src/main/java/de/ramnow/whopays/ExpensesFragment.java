@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,9 @@ public class ExpensesFragment extends Fragment {
 
     public ExpensesFragment() {
         // Required empty public constructor
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        CURRENCY = prefs.getString(getString(R.string.pref_currency_key),
-                getString(R.string.pref_currency_default));
+       /* FragmentActivity activity = getActivity();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        CURRENCY = prefs.getString(getString(R.string.pref_currency_key), getString(R.string.pref_currency_default));*/
     }
 
     @Override

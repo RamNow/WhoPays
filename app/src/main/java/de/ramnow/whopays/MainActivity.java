@@ -7,82 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
-    private RecyclerView mPayoffsView;
-    private LinearLayoutManager mLayoutManager;
     private PayoffsAdapter mPayoffsAdapter;
-
-    public class PayoffsAdapter extends RecyclerView.Adapter<PayoffsAdapter.ViewHolder> {
-        private ArrayList<String> mDataset;
-
-        public void addData(String data) {
-            mDataset.add(data);
-            notifyItemInserted(mDataset.size() - 1);
-        }
-
-        // Provide a reference to the views for each data item
-        // Complex data items may need more than one view per item, and
-        // you provide access to all the views for a data item in a view holder
-        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-            // each data item is just a string in this case
-            public TextView mTextView;
-
-            public ViewHolder(TextView v) {
-                super(v);
-                mTextView = v;
-                v.setOnClickListener(this);
-            }
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), PayoffsActivity.class)
-                        .putExtra(Intent.EXTRA_TEXT, mTextView.getText());
-                startActivity(intent);
-            }
-        }
-
-        // Provide a suitable constructor (depends on the kind of dataset)
-        public PayoffsAdapter(ArrayList<String> myDataset) {
-            mDataset = myDataset;
-        }
-
-        // Create new views (invoked by the layout manager)
-        @Override
-        public PayoffsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.payoff_list_item, parent, false);
-            TextView tv = (TextView) v.findViewById(R.id.payoff_item_text);
-
-            ViewHolder vh = new ViewHolder(tv);
-            return vh;
-        }
-
-        // Replace the contents of a view (invoked by the layout manager)
-        @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            // - get element from your dataset at this position
-            // - replace the contents of the view with that element
-            holder.mTextView.setText(mDataset.get(position));
-
-        }
-
-        // Return the size of your dataset (invoked by the layout manager)
-        @Override
-        public int getItemCount() {
-            return mDataset.size();
-        }
-    }
 
 
     @Override
@@ -90,20 +23,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
-        mPayoffsView = (RecyclerView) findViewById(R.id.payoffs_list);
-        mPayoffsView.setHasFixedSize(true);
-
-        mLayoutManager = new LinearLayoutManager(this);
-        mPayoffsView.setLayoutManager(mLayoutManager);
+        RecyclerView payoffsRecyclerView = (RecyclerView) findViewById(R.id.payoffs_list);
+        payoffsRecyclerView.setHasFixedSize(true);
+        payoffsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ArrayList<String> dummyData = new ArrayList<>();
         dummyData.add("OpenFlair 2014");
         dummyData.add("WG Abrechnung Oktober '14");
-        mPayoffsAdapter = new PayoffsAdapter(dummyData);
-        mPayoffsView.setAdapter(mPayoffsAdapter);
+        mPayoffsAdapter = new PayoffsAdapter(this, dummyData);
+        payoffsRecyclerView.setAdapter(mPayoffsAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
